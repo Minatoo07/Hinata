@@ -66,6 +66,9 @@
                     <div class="image">
                         <img src="./images/unnamed.png" alt="">
                     </div>
+                    <div class="gif">
+                        <img src="./images/mewmew.gif" alt="" width="50px">
+                    </div>
                     <div class="name">
                         <i class="fa-solid fa-heart"></i>
                         <span>Dear Hinata</span>
@@ -156,6 +159,47 @@
             </div>
         </div>
     </div>
+
+    <!-- Background music: replace 'background.mp3' with your actual file name -->
+    <audio id="bgMusic" src="web.mp3" autoplay loop playsinline></audio>
+    <script>
+        const bgMusic = document.getElementById('bgMusic');
+        bgMusic.volume = 0.2; // mild volume
+        bgMusic.muted = false;
+        bgMusic.autoplay = true;
+        bgMusic.loop = true;
+
+        function tryPlayMusic() {
+            bgMusic.play().then(() => {
+                console.log('Background music started');
+                const btn = document.getElementById('bgMusicResume');
+                if (btn) btn.remove();
+            }).catch((err) => {
+                console.warn('Autoplay blocked or failed:', err);
+                if (!document.getElementById('bgMusicResume')) {
+                    const button = document.createElement('button');
+                    button.id = 'bgMusicResume';
+                    button.textContent = 'Enable background music';
+                    button.style.position = 'fixed';
+                    button.style.bottom = '20px';
+                    button.style.right = '20px';
+                    button.style.zIndex = '9999';
+                    button.style.padding = '10px 14px';
+                    button.style.background = '#f9f9f9';
+                    button.style.border = '1px solid #888';
+                    button.style.borderRadius = '6px';
+                    button.style.cursor = 'pointer';
+                    button.onclick = () => {
+                        tryPlayMusic();
+                    };
+                    document.body.appendChild(button);
+                }
+            });
+        }
+
+        bgMusic.addEventListener('error', () => console.warn('Background audio load error: check that web.mp3 exists in the same folder and is not corrupted'));
+        tryPlayMusic();
+    </script>
 
 </body>
 <script>
@@ -261,3 +305,4 @@
 </script>
 
 </html>
+
