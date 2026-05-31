@@ -17,9 +17,6 @@
 }
 html{
     height: 100%;
-    overflow-y: scroll;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
 }
 body {
     position: relative;
@@ -28,10 +25,6 @@ body {
     padding: 0;
     height: 100%;
     background-image:linear-gradient(var(--color-pink), var(--color-pink));
-}
-body::-webkit-scrollbar {
-    width: 0;
-    height: 0;
 }
 #wrapper{
     position: relative;
