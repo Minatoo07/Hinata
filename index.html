@@ -506,27 +506,12 @@
         setSurprisePage(0);
     });
 
-    // Reveal the surprise button after the animated `.cricle` elements finish.
+    // Reveal the surprise button after animations finish (approx. 18s)
     if (surpriseButton) {
-        const cricles = Array.from(document.querySelectorAll('.cricle'));
-        if (cricles.length) {
-            let ended = 0;
-            cricles.forEach(el => {
-                el.addEventListener('animationend', () => {
-                    ended += 1;
-                    if (ended === cricles.length) {
-                        surpriseButton.classList.add('show');
-                    }
-                }, { once: true });
-            });
-            // Fallback in case animations are blocked: reveal after 18s
-            setTimeout(() => {
-                if (!surpriseButton.classList.contains('show')) surpriseButton.classList.add('show');
-            }, 18000);
-        } else {
-            // No animated cricles found — fallback to timeout
-            setTimeout(() => surpriseButton.classList.add('show'), 18000);
-        }
+        // ensure hidden initially (CSS handles it)
+        setTimeout(() => {
+            surpriseButton.classList.add('show');
+        }, 18000);
     }
 
     surpriseClose.addEventListener('click', function () {
